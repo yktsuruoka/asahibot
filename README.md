@@ -16,26 +16,6 @@ Slack からのメンションなどのイベントを受け取り、接続さ�
 - Slack App (Bot Token と App Token)
 - OpenCV (`pip install opencv-python-headless`)
 
-## システム構成図
-
-## システム構成図
-
-データの流れを簡単に表すと以下のようになります。
-
-```mermaid
-graph LR
-    user[スマホ・PC (人間)] -- "メッセージ送信" --> slack[Slack (クラウド)]
-    slack -- "通知" --> raspi[Raspberry Pi (このボット)]
-    
-    subgraph "お家・オフィス"
-        raspi -- "撮影して！" --> camera[カメラ]
-        camera -- "パシャッ (写真データ)" --> raspi
-    end
-
-    raspi -- "写真をアップロード" --> slack
-    slack -- "写真を表示" --> user
-```
-
 ## インストール
 
 1. リポジトリをダウンロード（または配置）します。
