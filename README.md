@@ -18,23 +18,49 @@ Slack からのメンションなどのイベントを受け取り、接続さ�
 
 ## インストール
 
-1. リポジトリをダウンロード（または配置）します。
-2. 仮想環境を作成し、依存ライブラリをインストールします。
+1. リポジトリをダウンロードします。
+
    ```bash
-   # 仮想環境の作成
-   python3 -m venv .venv
+   # 初回のみ（ダウンロード）
+   # ※ URLは自分のリポジトリのものを使ってください
+   # ※ 末尾のフォルダ名指定を省略すると、リポジトリ名と同じフォルダが作られます
+   # ※ 自由にフォルダ名を指定しても構いません (例: my_bot)
+   git clone https://github.com/yktsuruoka/asahibot_practice.git
    
-   # アクティベート
-   source .venv/bin/activate
+   # 作成されたフォルダに移動（リポジトリ名によって変わります）
+   cd asahibot_practice
    
-   # ライブラリインストール
-   pip install -r requirements.txt
+   # 2回目以降（更新）
+   git pull
    ```
-3. カメラデバイスへのアクセス権限を設定します（初回のみ）。
+
+2. インストールスクリプトを実行します。
+   これだけで「仮想環境の作成」から「ライブラリのインストール」「権限設定」まで自動で行われます。
+
    ```bash
-   sudo usermod -aG video $USER
-   sudo reboot
+   ./setup.sh
    ```
+
+   ※ 権限設定が変更された場合（初回など）、再起動を促すメッセージが表示されます。その場合は `sudo reboot` してください。
+
+## Slack Tokenの取得方法
+
+1.  **Slack Appの作成**: [Slack API](https://api.slack.com/apps) にアクセスし、「Create New App」→「From scratch」を選択。
+2.  **App Token (SLACK_APP_TOKEN)**:
+    *   左メニュー「Basic Information」→「App-Level Tokens」までスクロール。
+    *   「Generate Token and Scopes」をクリック。
+    *   Scopeに `connections:write` を追加し、名前を適当に付けてGenerate。
+    *   `xapp-` から始まるトークンをコピーします。
+3.  **Bot Token (SLACK_BOT_TOKEN)**:
+    *   左メニュー「OAuth & Permissions」を選択。
+    *   「Scopes」→「Bot Token Scopes」に以下を追加:
+        *   `app_mentions:read`: メンションに反応するため
+        *   `chat:write`: 画像をアップロードするため
+        *   `files:write`: 画像を保存・送信するため
+    *   ページ上部の「Install to Workspace」をクリックして許可。
+    *   `xoxb-` から始まる「Bot User OAuth Token」をコピーします。
+4.  **Socket Modeの有効化**:
+    *   左メニュー「Socket Mode」→「Enable Socket Mode」をONにします。
 
 ## 設定
 
@@ -53,20 +79,25 @@ Slack からのメンションなどのイベントを受け取り、接続さ�
 
 ## 起動方法
 
-仮想環境のPythonを使用して実行します。
+以下のスクリプトを実行するだけで、仮想環境の有効化と実行をまとめて行います。
 
 ```bash
-# 仮想環境を有効化していない場合
-.venv/bin/python3 app.py
+# 初回のみ実行権限を付与
+chmod +x start.sh
+
+# 実行
+./start.sh
 ```
 
-または
+### 自動起動する場合 (systemd)
+
+以下のコマンドを1回実行するだけで、自動起動の設定が完了します。
 
 ```bash
-# 仮想環境を有効化してから実行
-source .venv/bin/activate
-python3 app.py
+./start.sh --install
 ```
+
+これで、Raspberry Piの起動時にボットが自動的に立ち上がるようになります。
 
 ## 画像の保存と管理
 
@@ -75,7 +106,11 @@ python3 app.py
 
 ## ファイル構成
 
+*   `setup.sh`: **インストール用スクリプト**（環境構築 & 権限設定）
+*   `start.sh`: **起動・設定用スクリプト**（手動起動 & 自動起動設定）
+
 *   `app.py`: ボットのメインプログラム
+*   `asahibot.service`: 自動起動用の設定ファイル
 *   `requirements.txt`: 必要なPythonライブラリ一覧
 *   `.env.example`: 設定ファイルのテンプレート
 

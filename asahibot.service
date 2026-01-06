@@ -1,0 +1,14 @@
+[Unit]
+Description=AsahiBot Slack Camera Service
+After=network.target
+
+[Service]
+Type=simple
+User=furuseke
+WorkingDirectory=/home/furuseke/asahibot
+ExecStart=/home/furuseke/asahibot/start.sh
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
