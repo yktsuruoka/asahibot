@@ -56,7 +56,6 @@ Slack からのメンションなどのイベントを受け取り、接続さ�
 3.  **Bot Token (SLACK_BOT_TOKEN)**:
     *   左メニュー「OAuth & Permissions」を選択。
     *   「Scopes」→「Bot Token Scopes」に以下を追加:
-        *   `app_mentions:read`: メンションに反応するため
         *   `chat:write`: 画像をアップロードするため
         *   `files:write`: 画像を保存・送信するため
     *   ページ上部の「Install to Workspace」をクリックして許可。
@@ -66,7 +65,6 @@ Slack からのメンションなどのイベントを受け取り、接続さ�
     *   左メニュー **「Event Subscriptions」** を選択し、スイッチを **ON** にします。
     *   **「Subscribe to bot events」** を展開し、以下を追加します:
         *   `message.im`: DMを受け取るため
-        *   `app_mention`: メンションを受け取るため（念のため）
     *   **「Save Changes」** をクリックします（画面下部）。
     *   ※ページ上部に「Reinstall your app」と出たらクリックして再インストールしてください。
 5.  **Socket Modeの有効化**:
@@ -126,6 +124,14 @@ chmod +x start.sh
 ```
 
 これで、Raspberry Piの起動時にボットが自動的に立ち上がるようになります。
+
+## 使い方
+
+ボットの起動中、以下の操作を行うと、カメラで写真を撮影して返信します。
+
+*   **DM (ダイレクトメッセージ) を送る**: ボットに対して直接メッセージを送る（内容は「撮影して」など何でもOK）。
+
+数秒後に撮影された画像が返信されます。
 
 ## 画像の保存と管理
 
