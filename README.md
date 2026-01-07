@@ -27,10 +27,10 @@ Slack からのメンションなどのイベントを受け取り、接続さ�
    # ※ URLは自分のリポジトリのものを使ってください
    # ※ 末尾のフォルダ名指定を省略すると、リポジトリ名と同じフォルダが作られます
    # ※ 自由にフォルダ名を指定しても構いません (例: my_bot)
-   git clone https://github.com/yktsuruoka/asahibot.git
+   git clone https://github.com/yktsuruoka/asahibot.git my_bot
    
    # 作成されたフォルダに移動（リポジトリ名によって変わります）
-   cd asahibot
+   cd my_bot
    
    # 2回目以降（更新）
    git pull
