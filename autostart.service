@@ -4,9 +4,9 @@ After=network.target
 
 [Service]
 Type=simple
-User=furuseke
-WorkingDirectory=/home/furuseke/asahibot
-ExecStart=/home/furuseke/asahibot/start.sh
+User=%USER%
+WorkingDirectory=%WORKDIR%
+ExecStart=%WORKDIR%/start.sh
 Restart=always
 RestartSec=10
 

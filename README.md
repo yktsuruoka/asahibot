@@ -144,7 +144,7 @@ chmod +x start.sh
 *   `start.sh`: **起動・設定用スクリプト**（手動起動 & 自動起動設定）
 
 *   `app.py`: ボットのメインプログラム
-*   `asahibot.service`: 自動起動用の設定ファイル
+*   `autostart.service`: 自動起動用の設定ファイル
 *   `requirements.txt`: 必要なPythonライブラリ一覧
 *   `.env.example`: 設定ファイルのテンプレート
 
