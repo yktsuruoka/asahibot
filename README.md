@@ -1,5 +1,12 @@
 # Slack Camera Bot
 
+[![Version](https://img.shields.io/badge/Version-1.0.0-blue.svg)](https://github.com/yktsuruoka/asahibot/releases)
+[![Python 3.x](https://img.shields.io/badge/Python-3.x-blue?logo=python&logoColor=white)](https://www.python.org/)
+[![Slack API](https://img.shields.io/badge/Slack-API-white?logo=slack&logoColor=36C5F0)](https://api.slack.com/)
+[![OpenCV](https://img.shields.io/badge/OpenCV-enabled-brightgreen?logo=opencv&logoColor=white)](https://opencv.org/)
+[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Platform: Linux](https://img.shields.io/badge/Platform-Linux-orange?logo=linux&logoColor=white)](https://www.linux.org/)
+
 Slack からのメンションなどのイベントを受け取り、接続されたカメラで写真を撮影して返信するボットです。
 
 ## 特徴
