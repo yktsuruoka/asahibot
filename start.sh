@@ -10,14 +10,14 @@ if [ "$1" == "--install" ]; then
     # ユーザーとパスの取得
     CURRENT_USER=$(whoami)
     CURRENT_DIR=$(pwd)
-    SERVICE_NAME="autostart.service"
+    SERVICE_NAME="asahibot.service"
     
     echo "Configuring service for User: $CURRENT_USER, Path: $CURRENT_DIR"
 
     # サービスファイルの生成（テンプレートの置換）
     sed -e "s|%USER%|$CURRENT_USER|g" \
         -e "s|%WORKDIR%|$CURRENT_DIR|g" \
-        autostart.service > /tmp/$SERVICE_NAME
+        asahibot.service > /tmp/$SERVICE_NAME
 
     echo "Copying service file to /etc/systemd/system/..."
     sudo cp /tmp/$SERVICE_NAME /etc/systemd/system/
@@ -26,10 +26,10 @@ if [ "$1" == "--install" ]; then
     # 反映と有効化
     echo "Reloading daemon and enabling service..."
     sudo systemctl daemon-reload
-    sudo systemctl enable autostart
-    sudo systemctl start autostart
+    sudo systemctl enable asahibot
+    sudo systemctl start asahibot
     
-    echo "Done! Service 'autostart' is now running."
+    echo "Done! Service 'asahibot' is now running."
     exit 0
 fi
 
