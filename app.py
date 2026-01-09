@@ -24,7 +24,7 @@ CAMERA_RESOLUTION = os.environ.get("CAMERA_RESOLUTION", "1920x1080")
 
 def capture_image(filepath, say=None):
     """
-    OpenCVを使って画像をキャプチャする関数。失敗時はダミー画像を生成。
+    OpenCVを使って画像をキャプチャする関数。失敗時はFalseを返し、呼び出し元でエラー通知を行う。
     """
     capture_success = False
     last_error = None
