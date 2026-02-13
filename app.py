@@ -41,6 +41,7 @@ def capture_image(filepath, say=None):
         
     print(f"Attempting capture with OpenCV (Device {device_id})...")
     
+    cap = None
     try:
         cap = cv2.VideoCapture(device_id)
         if not cap.isOpened():
@@ -75,11 +76,12 @@ def capture_image(filepath, say=None):
         else:
             last_error = "Failed to grab frame (ret=False)"
             
-        cap.release()
-        
     except Exception as e:
         last_error = str(e)
         print(f"OpenCV capture failed: {last_error}")
+    finally:
+        if cap is not None:
+            cap.release()
 
     if capture_success:
         return True
